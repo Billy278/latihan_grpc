@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package proto;
+option go_package="latihan_grpc/common/proto";
+
+
+
+message User{
+    uint64 id =1;
+    string name =2;
+    string email =3;
+    uint64 age = 4;
+    string jenkel =5;
+}
+
+message DataUsers {
+    repeated User data=1;
+}
+
+
+service Users{
+    rpc ShowAll (User) returns (DataUsers);
+    rpc CreateUser (User) returns (User);
+    rpc FindById (User) returns (User);
+    rpc UpdateUser(User) returns (User);
+    rpc DeleteUser (User) returns (User);
+}
+
+//protoc --go_out=paths=source_relative:. --go-grpc_out=paths=source_relative:. student/*.proto
